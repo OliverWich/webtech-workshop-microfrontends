@@ -6,7 +6,7 @@ const Content = () => {
 
   useEffect(() => {
     const handleCustomEvent = (event) => {
-      setMessages(prevMessages => [...prevMessages, event.detail ]);
+      setMessages(prevMessages => [...prevMessages, event.detail ].toReversed());
     };
 
     // Erstelle einen EventListener für das Custom Event

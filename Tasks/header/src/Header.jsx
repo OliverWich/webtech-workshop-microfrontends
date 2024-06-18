@@ -8,11 +8,19 @@ const Header = () => {
     setMessage(event.target.value);
   };
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!message) {
+      alert("Message empty...")
+    }
+
     // Erstelle ein neues Custom Event und übergebe die Variable message als detail
     const event = new CustomEvent("headerInput", {
       detail: message
     })
+
+    setMessage("")
 
     window.dispatchEvent(event)
   };
@@ -20,7 +28,7 @@ const Header = () => {
   return (
     <header className="header">
       <h1>Header-Frontend</h1>
-      <div className="input-group">
+      <form className="input-group" onSubmit={handleSubmit}>
         <input
           type="text"
           className="header-input"
@@ -28,10 +36,10 @@ const Header = () => {
           onChange={handleChange}
           placeholder="Type your message here"
         />
-        <button className="header-button" onClick={handleClick}>
+        <button type="submit" className="header-button" onClick={handleSubmit}>
           Send Message
         </button>
-      </div>
+      </form>
     </header>
   );
 }
